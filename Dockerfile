@@ -15,7 +15,6 @@ COPY app ./app
 COPY products ./products
 
 ENV DATA_DIR=/srv/data \
-    PORT=8000 \
     DEMO_PRODUCTS_DIR=/srv/products \
     PYTHONUNBUFFERED=1
 
@@ -23,4 +22,4 @@ RUN mkdir -p /srv/data
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port $PORT"]
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
